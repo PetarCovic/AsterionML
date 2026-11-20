@@ -1,6 +1,6 @@
 add_library(asterionml_core STATIC
 	core/version.cpp
-)
+ "data/DataType.cpp")
 
 add_library(ml::core ALIAS asterionml_core)
 
