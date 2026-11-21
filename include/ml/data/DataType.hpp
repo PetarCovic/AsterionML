@@ -141,6 +141,51 @@ namespace ml
 		[[nodiscard]] DataTypeKind getKind() const noexcept; ///< @brief Returns the kind of the data type.
 		[[nodiscard]] const std::variant<std::monostate, DecimalSpec, FixedBinarySpec, TimeSpec, TimestampSpec, DurationSpec>& getParameters() const noexcept; ///< @brief Returns a borrowed, read-only reference to the parameters of the data type.
 
+		[[nodiscard]] bool isSignedInteger() const noexcept; ///< @brief Checks if the data type is a signed integer.
+		[[nodiscard]] bool isUnsignedInteger() const noexcept; ///< @brief Checks if the data type is an unsigned integer.
+		[[nodiscard]] bool isInteger() const noexcept; ///< @brief Checks if the data type is an integer.
+		[[nodiscard]] bool isFloatingPoint() const noexcept; ///< @brief Checks if the data type is a floating-point number.
+		[[nodiscard]] bool isComplex() const noexcept; ///< @brief Checks if the data type is a complex number.
+		[[nodiscard]] bool isDecimal() const noexcept; ///< @brief Checks if the data type is a decimal number.
+		[[nodiscard]] bool isRealNumeric() const noexcept; ///< @brief Checks if the data type is an integer, floating-point, or decimal number.
+		[[nodiscard]] bool isExactNumeric() const noexcept; ///< @brief Checks if the data type is an integer or decimal number.
+		[[nodiscard]] bool isInexactNumeric() const noexcept; ///< @brief Checks if the data type is a floating-point or complex number.
+		[[nodiscard]] bool isNumeric() const noexcept; ///< @brief Checks if the data type is an integer, floating-point, complex, or decimal number.
+		[[nodiscard]] bool isString() const noexcept; ///< @brief Checks if the data type is a string.
+		[[nodiscard]] bool isBinary() const noexcept; ///< @brief Checks if the data type is a variable-length or fixed-length binary type.
+		[[nodiscard]] bool isVariableBinary() const noexcept; ///< @brief Checks if the data type is a variable-length binary type.
+		[[nodiscard]] bool isFixedBinary() const noexcept; ///< @brief Checks if the data type is a fixed-length binary type.
+		[[nodiscard]] bool isBoolean() const noexcept; ///< @brief Checks if the data type is a boolean type.
+		[[nodiscard]] bool isNull() const noexcept; ///< @brief Checks if the data type is a null type.
+		[[nodiscard]] bool isTemporal() const noexcept; ///< @brief Checks if the data type is a date, time, timestamp, or duration.
+		[[nodiscard]] bool isDate() const noexcept; ///< @brief Checks if the data type is a date type.
+		[[nodiscard]] bool isTime() const noexcept; ///< @brief Checks if the data type is a time type.
+		[[nodiscard]] bool isTimestamp() const noexcept; ///< @brief Checks if the data type is a timestamp type.
+		[[nodiscard]] bool isDuration() const noexcept; ///< @brief Checks if the data type is a duration type.
+
+		[[nodiscard]] bool isInt8() const noexcept; ///< @brief Checks if the data type is an 8-bit signed integer type.
+		[[nodiscard]] bool isInt16() const noexcept; ///< @brief Checks if the data type is a 16-bit signed integer type.
+		[[nodiscard]] bool isInt32() const noexcept; ///< @brief Checks if the data type is a 32-bit signed integer type.
+		[[nodiscard]] bool isInt64() const noexcept; ///< @brief Checks if the data type is a 64-bit signed integer type.
+		[[nodiscard]] bool isUInt8() const noexcept; ///< @brief Checks if the data type is an unsigned 8-bit integer type.
+		[[nodiscard]] bool isUInt16() const noexcept; ///< @brief Checks if the data type is an unsigned 16-bit integer type.
+		[[nodiscard]] bool isUInt32() const noexcept; ///< @brief Checks if the data type is an unsigned 32-bit integer type.
+		[[nodiscard]] bool isUInt64() const noexcept; ///< @brief Checks if the data type is an unsigned 64-bit integer type.
+		[[nodiscard]] bool isFloat16() const noexcept; ///< @brief Checks if the data type is a 16-bit IEEE 754 floating-point type.
+		[[nodiscard]] bool isBFloat16() const noexcept; ///< @brief Checks if the data type is a bfloat16 type.
+		[[nodiscard]] bool isFloat32() const noexcept; ///< @brief Checks if the data type is a 32-bit IEEE 754 floating-point type.
+		[[nodiscard]] bool isFloat64() const noexcept; ///< @brief Checks if the data type is a 64-bit IEEE 754 floating-point type.
+		[[nodiscard]] bool isComplex64() const noexcept; ///< @brief Checks if the data type is a complex number with 32-bit components.
+		[[nodiscard]] bool isComplex128() const noexcept; ///< @brief Checks if the data type is a complex number with 64-bit components.
+		[[nodiscard]] bool isDecimal32() const noexcept; ///< @brief Checks if the data type is a Decimal32 type.
+		[[nodiscard]] bool isDecimal64() const noexcept; ///< @brief Checks if the data type is a Decimal64 type.
+		[[nodiscard]] bool isDecimal128() const noexcept; ///< @brief Checks if the data type is a Decimal128 type.
+		[[nodiscard]] bool isDecimal256() const noexcept; ///< @brief Checks if the data type is a Decimal256 type.
+		[[nodiscard]] bool hasParameters() const noexcept; ///< @brief Checks if the data type has associated parameters.
+		[[nodiscard]] bool hasTimeUnit() const noexcept; ///< @brief Checks if the data type has an associated time unit. Recognizes TIME, TIMESTAMP, and DURATION types.
+		[[nodiscard]] bool isTimezoneAware() const noexcept; ///< @brief Checks if the data type is a timezone-aware timestamp.
+		[[nodiscard]] bool isTimezoneNaive() const noexcept; ///< @brief Checks if the data type is a timezone-naive timestamp.
+
 	private:
 		DataType(DataTypeKind kind, std::variant<std::monostate, DecimalSpec, FixedBinarySpec, TimeSpec, TimestampSpec, DurationSpec> parameters);
 

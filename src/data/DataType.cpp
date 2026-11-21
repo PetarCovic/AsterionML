@@ -398,6 +398,363 @@ namespace ml
 		return parameters_;
 	}
 
+	/**
+	* @brief  Checks if the data type is a signed integer.
+	*/
+	[[nodiscard]] bool DataType::isSignedInteger() const noexcept
+	{
+		return kind_ == DataTypeKind::INT8 || kind_ == DataTypeKind::INT16 ||
+			kind_ == DataTypeKind::INT32 || kind_ == DataTypeKind::INT64;
+	}
+
+	/**
+	* @brief Checks if the data type is an unsigned integer.
+	*/
+	[[nodiscard]] bool DataType::isUnsignedInteger() const noexcept
+	{
+		return  kind_ == DataTypeKind::UINT8 || kind_ == DataTypeKind::UINT16 ||
+			kind_ == DataTypeKind::UINT32 || kind_ == DataTypeKind::UINT64;
+	}
+
+	/**
+	* @brief Checks if the data type is an integer.
+	*/
+	[[nodiscard]] bool DataType::isInteger() const noexcept
+	{
+		return isSignedInteger() || isUnsignedInteger();
+	}
+
+	/**
+	* @brief Checks if the data type is a floating-point number.
+	*/
+	[[nodiscard]] bool DataType::isFloatingPoint() const noexcept
+	{
+		return kind_ == DataTypeKind::FLOAT16 || kind_ == DataTypeKind::BFLOAT16 ||
+			kind_ == DataTypeKind::FLOAT32 || kind_ == DataTypeKind::FLOAT64;
+	}
+
+	/**
+	* @brief Checks if the data type is a complex number.
+	*/
+	[[nodiscard]] bool DataType::isComplex() const noexcept
+	{
+		return kind_ == DataTypeKind::COMPLEX64 || kind_ == DataTypeKind::COMPLEX128;
+	}
+
+	/**
+	* @brief Checks if the data type is a decimal number.
+	*/
+	[[nodiscard]] bool DataType::isDecimal() const noexcept
+	{
+		return kind_ == DataTypeKind::DECIMAL32 || kind_ == DataTypeKind::DECIMAL64 ||
+			kind_ == DataTypeKind::DECIMAL128 || kind_ == DataTypeKind::DECIMAL256;
+	}
+
+	/**
+	* @brief Checks if the data type is an integer, floating-point, or decimal number.
+	*/
+	[[nodiscard]] bool DataType::isRealNumeric() const noexcept
+	{
+		return  isInteger() || isFloatingPoint() || isDecimal();
+	}
+
+	/**
+	* @brief Checks if the data type is an integer or decimal number.
+	*/
+	[[nodiscard]] bool DataType::isExactNumeric() const noexcept
+	{
+		return isInteger() || isDecimal();
+	}
+
+	/**
+	* @brief Checks if the data type is a floating-point or complex number.
+	*/
+	[[nodiscard]] bool DataType::isInexactNumeric() const noexcept
+	{
+		return isFloatingPoint() || isComplex();
+	}
+
+	/**
+	* @brief Checks if the data type is an integer, floating-point, complex, or decimal number.
+	*/
+	[[nodiscard]] bool DataType::isNumeric() const noexcept
+	{
+		return isInteger() || isFloatingPoint() || isComplex() || isDecimal();
+	}
+
+	/**
+	* @brief Checks if the data type is a string.
+	*/
+	[[nodiscard]] bool DataType::isString() const noexcept
+	{
+		return kind_ == DataTypeKind::STRING;
+	}
+
+	/**
+	* @brief Checks if the data type is a variable-length or fixed-length binary type.
+	*/
+	[[nodiscard]] bool DataType::isBinary() const noexcept
+	{
+		return kind_ == DataTypeKind::BINARY || kind_ == DataTypeKind::FIXED_BINARY;
+	}
+
+	/**
+	* @brief Checks if the data type is a variable-length binary type.
+	*/
+	[[nodiscard]] bool DataType::isVariableBinary() const noexcept
+	{
+		return kind_ == DataTypeKind::BINARY;
+	}
+
+	/**
+	* @brief Checks if the data type is a fixed-length binary type.
+	*/
+	[[nodiscard]] bool DataType::isFixedBinary() const noexcept
+	{
+		return kind_ == DataTypeKind::FIXED_BINARY;
+	}
+
+	/**
+	* @brief Checks if the data type is a boolean type.
+	*/
+	[[nodiscard]] bool DataType::isBoolean() const noexcept
+	{
+		return kind_ == DataTypeKind::BOOLEAN;
+	}
+
+	/**
+	* @brief Checks if the data type is a null type.
+	*/
+	[[nodiscard]] bool DataType::isNull() const noexcept
+	{
+		return kind_ == DataTypeKind::NULL_VALUE;
+	}
+
+	/**
+	* @brief Checks if the data type is a date, time, timestamp, or duration.
+	*/
+	[[nodiscard]] bool DataType::isTemporal() const noexcept
+	{
+		return kind_ == DataTypeKind::DATE || kind_ == DataTypeKind::TIME ||
+			kind_ == DataTypeKind::TIMESTAMP || kind_ == DataTypeKind::DURATION;
+	}
+
+	/**
+	* @brief Checks if the data type is a date type.
+	*/
+	[[nodiscard]] bool DataType::isDate() const noexcept
+	{
+		return kind_ == DataTypeKind::DATE;
+	}
+
+	/**
+	* @brief Checks if the data type is a time type.
+	*/
+	[[nodiscard]] bool DataType::isTime() const noexcept
+	{
+		return kind_ == DataTypeKind::TIME;
+	}
+
+	/**
+	* @brief Checks if the data type is a timestamp type.
+	*/
+	[[nodiscard]] bool DataType::isTimestamp() const noexcept
+	{
+		return kind_ == DataTypeKind::TIMESTAMP;
+	}
+
+	/**
+	* @brief Checks if the data type is a duration type.
+	*/
+	[[nodiscard]] bool DataType::isDuration() const noexcept
+	{
+		return kind_ == DataTypeKind::DURATION;
+	}
+
+	/**
+	* @brief Checks if the data type is an 8-bit signed integer type.
+	*/
+	[[nodiscard]] bool DataType::isInt8() const noexcept
+	{
+		return  kind_ == DataTypeKind::INT8;
+	}
+
+	/**
+	* @brief Checks if the data type is a 16-bit signed integer type.
+	*/
+	[[nodiscard]] bool DataType::isInt16() const noexcept
+	{
+		return   kind_ == DataTypeKind::INT16;
+	}
+
+	/**
+	* @brief Checks if the data type is a 32-bit signed integer type.
+	*/
+	[[nodiscard]] bool DataType::isInt32() const noexcept
+	{
+		return   kind_ == DataTypeKind::INT32;
+	}
+
+	/**
+	* @brief Checks if the data type is a 64-bit signed integer type.
+	*/
+	[[nodiscard]] bool DataType::isInt64() const noexcept
+	{
+		return   kind_ == DataTypeKind::INT64;
+	}
+
+	/**
+	* @brief Checks if the data type is an unsigned 8-bit integer type.
+	*/
+	[[nodiscard]] bool DataType::isUInt8() const noexcept
+	{
+		return kind_ == DataTypeKind::UINT8;
+	}
+
+	/**
+	* @brief Checks if the data type is an unsigned 16-bit integer type.
+	*/
+	[[nodiscard]] bool DataType::isUInt16() const noexcept
+	{
+		return kind_ == DataTypeKind::UINT16;
+	}
+
+	/**
+	* @brief Checks if the data type is an unsigned 32-bit integer type.
+	*/
+	[[nodiscard]] bool DataType::isUInt32() const noexcept
+	{
+		return kind_ == DataTypeKind::UINT32;
+	}
+
+	/**
+	* @brief Checks if the data type is an unsigned 64-bit integer type.
+	*/
+	[[nodiscard]] bool DataType::isUInt64() const noexcept
+	{
+		return kind_ == DataTypeKind::UINT64;
+	}
+
+	/**
+	* @brief Checks if the data type is a 16-bit IEEE 754 floating-point type.
+	*/
+	[[nodiscard]] bool DataType::isFloat16() const noexcept
+	{
+		return kind_ == DataTypeKind::FLOAT16;
+	}
+
+	/**
+	* @brief Checks if the data type is a bfloat16 type.
+	*/
+	[[nodiscard]] bool DataType::isBFloat16() const noexcept
+	{
+		return kind_ == DataTypeKind::BFLOAT16;
+	}
+
+	/**
+	* @brief Checks if the data type is a 32-bit IEEE 754 floating-point type.
+	*/
+	[[nodiscard]] bool DataType::isFloat32() const noexcept
+	{
+		return  kind_ == DataTypeKind::FLOAT32;
+	}
+
+	/**
+	* @brief Checks if the data type is a 64-bit IEEE 754 floating-point type.
+	*/
+	[[nodiscard]] bool DataType::isFloat64() const noexcept
+	{
+		return kind_ == DataTypeKind::FLOAT64;
+	}
+
+	/**
+	* @brief Checks if the data type is a complex number with 32-bit components.
+	*/
+	[[nodiscard]] bool DataType::isComplex64() const noexcept
+	{
+		return kind_ == DataTypeKind::COMPLEX64;
+	}
+
+	/**
+	* @brief Checks if the data type is a complex number with 64-bit components.
+	*/
+	[[nodiscard]] bool DataType::isComplex128() const noexcept
+	{
+		return kind_ == DataTypeKind::COMPLEX128;
+	}
+
+	/**
+	* @brief Checks if the data type is a Decimal32 type.
+	*/
+	[[nodiscard]] bool DataType::isDecimal32() const noexcept
+	{
+		return kind_ == DataTypeKind::DECIMAL32;
+	}
+
+	/**
+	* @brief Checks if the data type is a Decimal64 type.
+	*/
+	[[nodiscard]] bool DataType::isDecimal64() const noexcept
+	{
+		return kind_ == DataTypeKind::DECIMAL64;
+	}
+
+	/**
+	* @brief Checks if the data type is a Decimal128 type.
+	*/
+	[[nodiscard]] bool DataType::isDecimal128() const noexcept
+	{
+		return kind_ == DataTypeKind::DECIMAL128;
+	}
+
+	/**
+	* @brief Checks if the data type is a Decimal256 type.
+	*/
+	[[nodiscard]] bool DataType::isDecimal256() const noexcept
+	{
+		return kind_ == DataTypeKind::DECIMAL256;
+	}
+
+	/**
+	* @brief Checks if the data type has associated parameters.
+	*/
+	[[nodiscard]] bool DataType::hasParameters() const noexcept
+	{
+		return !std::holds_alternative<std::monostate>(parameters_);
+	}
+
+	/**
+	* @brief Checks if the data type has an associated time unit. Recognizes TIME, TIMESTAMP, and DURATION types.
+	*/
+	[[nodiscard]] bool DataType::hasTimeUnit() const noexcept
+	{
+		return  kind_ == DataTypeKind::TIME || kind_ == DataTypeKind::TIMESTAMP ||
+			kind_ == DataTypeKind::DURATION;
+	}
+
+	/**
+	* @brief Checks if the data type is a timezone-aware timestamp.
+	*/
+	[[nodiscard]] bool DataType::isTimezoneAware() const noexcept
+	{
+		return kind_ == DataTypeKind::TIMESTAMP &&
+			std::holds_alternative<TimestampSpec>(parameters_) &&
+			std::get<TimestampSpec>(parameters_).time_zone.has_value();
+	}
+
+	/**
+	* @brief Checks if the data type is a timezone-naive timestamp.
+	*/
+	[[nodiscard]] bool DataType::isTimezoneNaive() const noexcept
+	{
+		return kind_ == DataTypeKind::TIMESTAMP &&
+			std::holds_alternative<TimestampSpec>(parameters_) &&
+			!std::get<TimestampSpec>(parameters_).time_zone.has_value();
+	}
+
+	/**
+	* @brief Validates the provided time unit. Throws an exception if the time unit is unrecognized.
+	*/
 	void DataType::validateTimeUnit(TimeUnit unit)
 	{
 		switch (unit)
