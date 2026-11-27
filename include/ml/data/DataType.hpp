@@ -186,6 +186,100 @@ namespace ml
 		[[nodiscard]] bool isTimezoneAware() const noexcept; ///< @brief Checks if the data type is a timezone-aware timestamp.
 		[[nodiscard]] bool isTimezoneNaive() const noexcept; ///< @brief Checks if the data type is a timezone-naive timestamp.
 
+		Create(kind parameters);
+		TryCreate(kind, parameters);
+		validateDefinition(kind, parameters);
+
+		DataType(const DataType&) = default;
+		DataType(DataType&&) noexcept = default;
+		operator=(const DataType&) = default;
+		operator=(DataType&&) noexcept = default;
+		~DataType() noexcept = default;
+		swap(DataType& other) noexcept;
+
+		getName();
+		visitParameters(visitor);
+
+		getDecimalSpec();
+		getFixedBinarySpec();
+		getTimeSpec();
+		getTimestampSpec();
+		getDurationSpec();
+		tryGetDecimalSpec();
+		tryGetFixedBinarySpec();
+		tryGetTimeSpec();
+		tryGetTimestampSpec();
+		tryGetDurationSpec();
+
+		getPrecision();
+		tryGetPrecision();
+		getScale();	
+		tryGetScale();
+		getByteCount();
+		tryGetByteCount();
+		getTimeUnit();	
+		tryGetTimeUnit();
+		getTimezone();	
+		tryGetTimezone();
+		getMaxDecimalPrecision();	
+		tryGetMaxDecimalPrecision();
+		getComplexComponentType();	
+		tryGetComplexComponentType();
+		getNumericInfo();	
+		tryGetNumericInfo();
+
+		supportsNaN();
+		supportsInfinity();
+		supportsSignedZero();
+
+		operator==(other);
+		operator!=(other);
+		operator<=>(other);
+		operator()(const DataType&);
+		operator<<(stream, type);
+		swap(left, right);
+		hasSameKind(other);
+		hash();
+		getFingerprint();
+
+		withParameters(parameters);
+		withPrecision(precision);
+		withScale(scale);
+		withDecimalSpec(spec);
+		withByteCount(byte_count);
+		withTimeUnit(unit);
+		withTimezone(time_zone);
+		withoutTimezone();
+
+		toString();
+		describe();
+		Parse(text);
+		TryParse(text);
+
+		Of<T>();
+		supportsCppType<T>();
+		matchesCppType<T>();
+
+		getCastInfo(target, options);
+		canCastTo(target, options);
+		canLosslesslyCastTo(target, options);
+		promoteWith(other, options);
+		CommonType(types, options);
+
+		isFixedWidth(layout_policy);
+		isVariableWidth(layout_policy);
+		getBitWidth(layout_policy);
+		getByteWidth(layout_policy);
+		getLayout(layout_policy);
+		hasSameLayout(other, layout_policy);
+
+		serialize(writer);
+		Deserialize(reader);
+		toBytes();
+		FromBytes(bytes);
+		toJson();
+		FromJson(text);
+
 	private:
 		DataType(DataTypeKind kind, std::variant<std::monostate, DecimalSpec, FixedBinarySpec, TimeSpec, TimestampSpec, DurationSpec> parameters);
 
